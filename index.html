@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple One Page Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="header">Welcome to My Website</h1>
+        <p>This is a simple one-page website demonstrating various JavaScript features.</p>
+        <form id="myForm">
+            <label for="nameInput">Name: </label>
+            <input type="text" id="nameInput" name="nameInput" required>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="greeting" class="hidden"></div>
+        <button id="changeColorButton">Change Background Color</button>
+    </div>
+
+    <script>
+        // Cache an element using getElementById
+        const header = document.getElementById('header');
+
+        // Cache an element using querySelector
+        const form = document.querySelector('#myForm');
+
+        // Use parent-child-sibling relationship to navigate between elements
+        const container = header.parentNode;
+        const firstChild = container.firstElementChild;
+        const lastChild = container.lastElementChild;
+
+        // Iterate over a collection of elements to accomplish some task
+        const buttons = container.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.style.margin = '10px 0';
+        });
+
+        // Event listener for form submission
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // Modify the text content of an element in response to user interaction
+            const name = document.getElementById('nameInput').value;
+            const greeting = document.getElementById('greeting');
+            greeting.textContent = `Hello, ${name}!`;
+            greeting.classList.remove('hidden');
+        });
+
+        // Event listener for changing background color
+        const changeColorButton = document.getElementById('changeColorButton');
+        changeColorButton.addEventListener('click', () => {
+            // Modify the style of an element in response to user interactions
+            document.body.style.backgroundColor = document.body.style.backgroundColor === 'lightblue' ? '#f0f0f0' : 'lightblue';
+        });
+
+        // Use BOM property
+        console.log(`The current URL is: ${window.location.href}`);
+
+        // Use BOM method
+        window.alert('Welcome to the Simple One Page Website!');
+    </script>
+</body>
+</html>
